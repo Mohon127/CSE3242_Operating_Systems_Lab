@@ -1,3 +1,4 @@
+//Problem-13
 /*
 Write a C program to show how data inconsistency arises in a multi-threaded
 process.
@@ -15,7 +16,7 @@ void* increment1(void* arg) {
     return NULL;
 }
 
-void* decrement1(void* arg) {
+void* increment2(void* arg) {
     for (int i = 0; i < 10; i++) {
         count--; // No synchronization
         printf("Thread 2: count = %d\n", count);
@@ -29,7 +30,7 @@ int main() {
     pthread_t t1, t2;
 
     pthread_create(&t1, NULL, increment1, NULL);
-    pthread_create(&t2, NULL, decrement1, NULL);
+    pthread_create(&t2, NULL, increment2, NULL);
 
     pthread_join(t1, NULL);
     pthread_join(t2, NULL);

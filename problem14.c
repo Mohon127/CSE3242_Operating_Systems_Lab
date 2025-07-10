@@ -1,8 +1,3 @@
-/*
-Write a C program to show how data inconsistency arises in two related 
-processes (e.g., parent & child processes) when they share a memory space.
-*/
-
 #define _GNU_SOURCE
 #include <stdlib.h>
 #include <unistd.h>
@@ -42,7 +37,6 @@ int main(){
 		for(i = 0; i < 10; i++){
 			printf("Child before write: shared_var = %d\n", *shmaddr);
 			*shmaddr = 100;
-			usleep(100000); // 100 ms
 			printf("Child after  write: shared_var = %d\n", *shmaddr);
 		}
 		
@@ -61,7 +55,6 @@ int main(){
 		for(i = 0; i < 10; i++){
 			printf("Parent before write: shared_var = %d\n", *shmaddr);
 			*shmaddr = 999;
-			usleep(120000); // 120 ms
 			printf("Parent after  write: shared_var = %d\n", *shmaddr);
 		}
 		
